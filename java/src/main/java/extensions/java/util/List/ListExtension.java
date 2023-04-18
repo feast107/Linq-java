@@ -84,6 +84,7 @@ public class ListExtension {
         }
         return -1;
     }
+
     /**
      * 所有符合条件的对象
      * @param source 源列表
@@ -113,6 +114,10 @@ public class ListExtension {
         List<R> ret = new ArrayList<>();
         source.forEach(x->ret.add(selector.apply(x)));
         return ret;
+    }
+
+    public static <E,R> List<R> convertAll(@This List<E> source,Function<E,R> converter){
+        return source.select(converter);
     }
 
     /**
@@ -159,6 +164,14 @@ public class ListExtension {
         return ret;
     }
 
+    /**
+     * 升序排序
+     * @param source 源列表
+     * @param selector 排序依据的属性
+     * @return 排序后的列表
+     * @param <E> 对象类型
+     * @param <T> 属性类型
+     */
     public static <E,T extends Comparable<T>> List<E> orderBy(@This List<E> source, Function<E,T> selector) {
         List<E> ret = new ArrayList<>();
         source.forEach(x -> {
@@ -172,6 +185,15 @@ public class ListExtension {
         });
         return ret;
     }
+
+    /**
+     * 降序排序
+     * @param source 源列表
+     * @param selector 排序依据的属性
+     * @return 排序后的列表
+     * @param <E> 对象类型
+     * @param <R> 属性类型
+     */
     public static <E,R extends Comparable<R>> List<E> orderByDescending(@This List<E> source, Function<E,R> selector) {
         List<E> ret = new ArrayList<>();
         source.forEach(x -> {
@@ -185,6 +207,7 @@ public class ListExtension {
         });
         return ret;
     }
+
     /**
      * 转换为 {@link HashMap}
      * @param source 源列表
