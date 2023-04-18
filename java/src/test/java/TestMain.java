@@ -25,6 +25,7 @@ public class TestMain {
         List.add(new Foo());
         List.add(new Foo());
         List<Foo> temp = new ArrayList<>();
+
         List
                 .orderBy(x->x.priority)
                 .aggregate(temp,(s,i)->{ System.out.println(i); return List; })
