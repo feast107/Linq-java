@@ -20,6 +20,7 @@ public class ListExtension {
     public static <E> int count(@This List<E> source){
         return source.size();
     }
+
     /**
      * 通过下标获取一个值
      * @param source 源列表
@@ -83,6 +84,16 @@ public class ListExtension {
             }
         }
         return -1;
+    }
+
+    /**
+     * 返回首个元素
+     * @param source 源列表
+     * @return 首个元素，如果没有则为 {@literal null}
+     * @param <E> 对象类型
+     */
+    public static <E> E firstOrNull(@This List<E> source){
+        return source.stream().findAny().orElse(null);
     }
 
     /**
